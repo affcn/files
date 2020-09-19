@@ -25,11 +25,16 @@
  }
 
  function transformLang() {
-     var pId = getQueryString("p") || 0;
-     //501是繁体版pid
-     if (parseInt(pId) === 501) {
-         s2t();
+     var type = navigator.appName;
+     if (type == "Netscape") {
+         var lang = navigator.language;
      } else {
-         t2s();
+         var lang = navigator.userLanguage; 
+     };
+     if (lang.substr(0,2) == "zh") {
+         if (lang.substr(3,2) != "CN") {
+             s2t();
+         }
      }
+
  }
